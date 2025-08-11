@@ -1,10 +1,13 @@
 class RecieverRobot:
     #defines functions for accessing robot name, account amount, as well as paying for service 
-    #could also add logs of which services were provided and how much they cost, as well as different service types
+    #now, I need to implement different service types
+    #next step would be converting prices into crypto currency amounts
+    #could also have a running total of the sum
     def __init__(self, name, account, reciever_id):
         self._name = name
         self._account_amount = account
         self.__private_id = reciever_id
+        self._transactions=[]
 
     def account_dec(self, decrease):
         self._account_amount -= decrease
@@ -26,6 +29,7 @@ class SenderRobot:
         self._service_cost = service_cost
         self._account_amount = account
         self.__private_id = sender_id
+        self._recieved_transactions=[]
 
     def account_add(self, increase):
         self._account_amount += increase
@@ -47,6 +51,9 @@ class SenderRobot:
             cost = self.service_cost()
             self.account_add(cost)
             robotObj.account_dec(cost)
+            service=self.robot_service()
+            self._recieved_transactions.append([cost,service])
+            robotObj._transactions.append([-cost,service])
 
 
 # Example of usage

@@ -152,3 +152,22 @@ net_sum=sum(range(1,len(senders)+1))
 index_rate=100/net_sum
 
 #now, I just need to assign a gaussian probability to each index with the index+1 times the rate, then subtract one of the resulting index
+value=random.randint(0,100)
+#now, to figure out which range it fits in 
+
+sum=0
+
+chosen_index = None
+i = 0
+while i < len(senders) and chosen_index is None:
+    sum +=i * index_rate
+    if value <= sum:
+        chosen_index = i
+    i += 1
+
+if chosen_index is None:
+    chosen_index=len(senders)-1
+
+print(chosen_index)
+print(value)
+

@@ -26,7 +26,6 @@ class RecieverRobot:
 
 class SenderRobot:
     #defines functions fo raccessing robot name, service, and account amount
-    #could change the function so the other has to have more than enough money
     #might need a check function to make sure the other is the correct one, too
     def __init__(self, name, service, service_cost, account, sender_id):
         self._name = name

@@ -151,10 +151,9 @@ net_sum=sum(range(1,len(senders)+1))
 #divides 100percent proportionally by the sum of each index
 index_rate=100/net_sum
 
-#now, I just need to assign a gaussian probability to each index with the index+1 times the rate, then subtract one of the resulting index
+#generates a random number, then finds which associated index it falls between
+#need to figure out how to do without None
 value=random.randint(0,100)
-#now, to figure out which range it fits in 
-
 sum=0
 
 chosen_index = None

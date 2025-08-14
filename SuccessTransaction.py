@@ -3,6 +3,7 @@ import numpy as np
 import random
 from RobotObject import RecieverRobot
 from RobotObject import SenderRobot
+import matplotlib.pyplot as plt
 
 ##############################################################################################
 ####Shows how a token is instrumented####
@@ -29,7 +30,7 @@ senders=[sender1,sender2,sender3,sender4,sender5]
 sender1.trade(reciever1, "SoFi1")
 
 reciever1.successful_transaction(sender1, False)
-print(sender1.success_count())
+#print(sender1.success_count())
 
 #now, I need to figure out how to parse over the list and use a random.randint() function to randomly select a reciever, and prioritize positive success
 #need some time aspect, so multiple robots arent' operating at once 
@@ -69,6 +70,9 @@ index_rate=100/net_sum
 
 #generates a random number, then finds which associated index it falls between
 #need to figure out how to do without None
+
+
+
 value=random.randint(0,100)
 sum=0
 
@@ -83,6 +87,39 @@ while i < len(senders) and chosen_index is None:
 if chosen_index is None:
     chosen_index=len(senders)-1
 
-print(chosen_index)
-print(value)
 
+
+##Plotting to show a roughly linear number of selections between the robots and their sorted success rates
+"""
+count_arr=np.zeros(len(senders))
+value_arr=np.linspace(0,len(senders)-1,len(senders))
+print(value_arr)
+
+for j in range(1000):
+    value=random.randint(0,100)
+    sum=0
+
+
+    chosen_index = None
+    i = 0
+    while i < len(senders) and chosen_index is None:
+        sum +=i * index_rate
+        if value <= sum:
+            chosen_index = i
+        i += 1
+
+
+    if chosen_index is None:
+        chosen_index=len(senders)-1
+   
+    count_arr[chosen_index]+=1
+
+# Plotting
+plt.plot(value_arr, count_arr, marker='o')
+plt.xlabel("Sender Index")
+plt.ylabel("Count")
+plt.title("Random Selection Counts")
+plt.show()
+
+
+"""

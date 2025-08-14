@@ -1,6 +1,10 @@
 import requests
 import tkinter as tk
 from tkinter import messagebox
+#imports class
+from RobotObject import RecieverRobot
+from RobotObject import SenderRobot
+
 
 #all in form of x-stockabrev-zusd
 eth="XETHZUSD"

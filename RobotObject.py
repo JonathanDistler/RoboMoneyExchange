@@ -78,6 +78,7 @@ class SenderRobot:
 
 
 # Example of usage
+"""
 ex_sender_obj = SenderRobot("SoFi", "Car Cleaning", 250, 0, 21929)
 ex_reciever_obj = RecieverRobot("SoFi2", 500, 43348)
 
@@ -85,3 +86,5 @@ ex_sender_obj.trade(ex_reciever_obj, "SoFi2")
 
 print("Reciever Transactions:",ex_reciever_obj.account_transactions())
 print("Sender Transactions:",ex_sender_obj.trade_transactions())
+
+"""

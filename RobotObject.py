@@ -1,4 +1,5 @@
 import numpy as np
+
 class RecieverRobot:
     #defines functions for accessing robot name, account amount, as well as paying for service 
     #now, I need to implement different service types
@@ -22,7 +23,13 @@ class RecieverRobot:
     
     def account_transactions(self):
         return self._transactions
-
+    
+    def successful_transaction(self,robotObj,Success):
+        #if a successful transaction, the success counter increments by 1, else decrements by 2, prioritizes success half as much as failure
+        if Success:
+            robotObj._success_count+=1
+        else:
+            robotObj._success_count-=2
 
 class SenderRobot:
     #defines functions fo raccessing robot name, service, and account amount
@@ -32,6 +39,7 @@ class SenderRobot:
         self.service = service
         self._service_cost = service_cost
         self._account_amount = account
+        self._success_count=0
         self.__private_id = sender_id
         self._recieved_transactions = np.array(
         [["Transaction Amount", "Service", "Running Account Amount"]],
@@ -54,6 +62,9 @@ class SenderRobot:
     
     def trade_transactions(self):
         return self._recieved_transactions
+    
+    def success_count(self):
+        return self._success_count
 
     def trade(self, robotObj, name):
         if name == robotObj.robot_name():
@@ -75,7 +86,6 @@ class SenderRobot:
                 robotObj._transactions=np.vstack([robotObj._transactions,[-cost,service,reciever_account_amount]])
             else:
                 print("Not enough money!")
-
 
 # Example of usage
 """
